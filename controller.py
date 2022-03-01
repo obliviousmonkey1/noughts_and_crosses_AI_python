@@ -38,7 +38,8 @@ class Controller:
             # draw
             self._view.gameEnded('DRAW')
 
-
+    def resetGame(self):
+        self._model.reset()
     
     def getCurrentBoard(self) -> str:
         res = ''

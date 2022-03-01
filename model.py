@@ -1,5 +1,6 @@
 from random import randint, random
 import pickle
+import time 
 
 CHANGE_FACTOR = 0.001
  
@@ -161,17 +162,22 @@ class AI:
     def __init__(self) -> None:
         self.dt = DecisionTree()
         self.currentNode = self.dt
-        self.gameConfig = []
         self.turn = 0
         self.difficulty = 1 # 1 or 0 
         self.ended = False
         self.path = []
         self.developStrategy()
 
-    def developStrategy(self, n: int = 10000):
+    def developStrategy(self, n: int = 100000):
         buildTree(self.dt)
         for _ in range(n):
             playGame(self.dt)
+    
+    def reset(self):
+        self.ended = False
+        self.currentNode = self.dt
+        self.turn = 0
+        self.path = []
 
     def increaseChance(self):
         # iterate over path and strengthen all noughts turns
@@ -245,3 +251,4 @@ class AI:
             self.ended = True 
 
         return result 
+

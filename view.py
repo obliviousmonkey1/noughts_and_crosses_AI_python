@@ -24,14 +24,11 @@ class UI:
 
     def mainloop(self):
         while self.gameRunning:
-            print('hello')
             if not self._controller.gameOn():
                 self._controller.getTurn()
             else:
                 if str(input('Game has ended would you like to play again ? (y/n) >')) == 'n':
                     self.gameRunning = False
-
-'''
-Need to impliment ai learning if lost or won 
-
-'''
+                else:
+                    self._controller.resetGame()
+        
